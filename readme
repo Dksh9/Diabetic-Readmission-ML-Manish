@@ -1,0 +1,67 @@
+# 🏥 Diabetic Readmission Prediction: A Comparative ML Study
+
+## 🎯 Executive Summary
+This repository contains a comprehensive comparative analysis of six machine learning models designed to predict hospital readmission for diabetic patients. In clinical settings, predicting readmission is vital for improving patient outcomes and reducing hospital costs.
+
+---
+
+## 🏆 Performance Leaderboard
+*The following results represent the final evaluation on the held-out test set (n=19,611).*
+
+### 🥇 1. Random Forest (Top Performer)
+* **Accuracy:** 63.74%
+* **Recall (Class 1):** 0.58
+* **F1-Score:** 0.60
+* *Note: Best balance of sensitivity and specificity for clinical use.*
+
+### 🥈 2. Decision Tree
+* **Accuracy:** 62.43%
+* **Recall (Class 1):** 0.50
+* **F1-Score:** 0.56
+
+### 🥉 3. Support Vector Machine (Linear)
+* **Accuracy:** 61.40%
+* **Recall (Class 1):** 0.51
+* **F1-Score:** 0.55
+
+### 🎖️ 4. Logistic Regression
+* **Accuracy:** 61.38%
+* **Recall (Class 1):** 0.41
+* **F1-Score:** 0.50
+
+### 🎖️ 5. k-Nearest Neighbors
+* **Accuracy:** 58.54%
+* **Recall (Class 1):** 0.49
+* **F1-Score:** 0.53
+
+### 🎖️ 6. Naive Bayes
+* **Accuracy:** 58.40%
+* **Recall (Class 1):** 0.23
+* **F1-Score:** 0.33
+
+
+
+## 🧠 Why Random Forest Won
+
+
+Unlike simpler models, the Random Forest utilizes an **Ensemble Learning** strategy. By aggregating the predictions of 200 individual decision trees, it successfully reduced the "noise" found in clinical datasets. 
+* **Handling Class Imbalance:** Used `class_weight='balanced'` to ensure the model didn't ignore the minority "Readmitted" group.
+* **Feature Interaction:** It effectively captured non-linear relationships between variables (e.g., the relationship between `time_in_hospital` and `num_lab_procedures`).
+
+---
+
+## 🔬 Clinical Impact & Conclusion
+The primary goal was to maximize **Recall** for the "Readmitted" class. A model with high recall ensures that hospitals can intervene *before* discharge for patients most at risk. 
+
+By increasing recall from **0.23 (Naive Bayes)** to **0.58 (Random Forest)**, this project demonstrates how selecting the appropriate architecture can nearly triple the effectiveness of a clinical screening tool.
+
+---
+
+## 🛠️ Setup & Usage
+1. Clone the repo: `git clone [Your Repo Link]`
+2. Install dependencies: `pip install pandas scikit-learn matplotlib seaborn`
+3. Run the summary script: `python generate_summary_plots.py`
+
+📝 Self-Reflection & Critical Analysis
+
+This project served as an end-to-end exploration of the machine learning pipeline, from raw clinical data to an optimized ensemble model. A critical learning point was the realization that Accuracy is a deceptive metric in healthcare datasets; if I had relied on Accuracy alone, the Naive Bayes model might have seemed 'passable' despite missing 77% of at-risk patients. Moving forward, the project highlights the importance of Feature Engineering. While the Random Forest performed well, further refinement of the 'Diagnostic' codes into broader categories (e.g., grouping ICD-9 codes by organ system) could potentially reduce the high dimensionality that hindered the k-Nearest Neighbors model. Ultimately, the transition from linear baselines to ensemble methods demonstrated that the complexity of the model must match the complexity of the underlying biological and clinical processes.
