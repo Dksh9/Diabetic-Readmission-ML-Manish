@@ -29,7 +29,7 @@ if st.button("Analyze Risk", use_container_width=True):
     
   
     try:
-        response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+        response = requests.post("https://healthguard-api-8cgj.onrender.com/predict", json=payload)
         result = response.json()
         
         st.divider()
