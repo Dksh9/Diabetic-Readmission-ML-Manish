@@ -8,16 +8,16 @@ import uvicorn
 
 app = FastAPI(title="Diabetic Readmission API")
 
-# --- FIX 1: Allow Streamlit to talk to this API ---
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, you'd put your streamlit URL here
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Load artifacts
+# Loading artifacts
 artifacts = joblib.load('champion_rf_readmission_model.joblib')
 model = artifacts['pipeline']
 threshold = artifacts['optimal_threshold']
@@ -59,6 +59,6 @@ def predict_readmission(patient: Patient):
     }
 
 if __name__ == "__main__":
-    # --- FIX 2: Dynamic Port for Cloud Deployment ---
+   
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
