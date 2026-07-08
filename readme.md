@@ -14,8 +14,6 @@
 
 ## 1\. Professional System Architecture
 
-Unlike standard monolithic applications, HealthGuard utilizes a **Decoupled Cloud Architecture**. This separation of concerns ensures that the heavy computational load of the Random Forest model does not lag the user interface.
-
 ### **The Three-Tier Logic**
 
 1.  **Persistence Layer:** Serialized `.joblib` artifacts containing the trained `Pipeline`, `StandardScaler`, and `LabelEncoder`.
@@ -26,7 +24,7 @@ Unlike standard monolithic applications, HealthGuard utilizes a **Decoupled Clou
 
 ## 2\. Deep-Dive: The Research & Modeling Pipeline
 
-The core of this project is a comparative study of **7 distinct algorithmic configurations**. We didn't just pick a model; we stress-tested the entire Scikit-Learn library.
+The core of this project is a comparative study of **7 distinct algorithmic configurations**. 
 
 ### **Detailed Performance Matrix**
 
@@ -48,9 +46,7 @@ The core of this project is a comparative study of **7 distinct algorithmic conf
 
 -----
 
-## 3\. Engineering Masterclass: Solving the "Clinical Gap"
-
-A model that is 99% accurate but misses the 1% of patients who die is a failure. We solved this through three advanced engineering pillars:
+## 3\. Solving the "Clinical Gap"
 
 ### **Pillar I: SMOTE (Synthetic Minority Over-sampling)**
 
@@ -71,10 +67,6 @@ Standard models use a 0.5 decision threshold. We recalculated the **Precision-Re
 
 ## 4\. Deployment & Infrastructure Setup
 
-This repository is configured for **Environment Parity** (Dev = Prod).
-
-### **Production-Grade Installation**
-
 ```powershell
 # 1. Virtual Environment Isolation
 python -m venv venv
@@ -89,7 +81,3 @@ python app.py & streamlit run frontend.py
 ```
 
 -----
-
-## 5\. Reflection
-
-This project proves that **MLOps is as important as ML**. By building a decoupled system that handles data cleaning, synthetic sampling, and cross-cloud communication, we have moved from a "Student Experiment" to a "Clinical-Ready Tool." The final system is not just a predictor; it is a scalable infrastructure for hospital decision-making.
